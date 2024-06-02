@@ -1,52 +1,45 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
-
+#include <string>
 using namespace std;
 
-class Car 
-{
-	public:
-	    int rentalID;
-	    string make;
-	    string model;
-	    double rentalPrice;
-	    string carType;
-	
-	    Car() : rentalID(0), make(""), model(""), rentalPrice(0.0), carType("") {}
-	
-	    Car(int id, string mk, string mdl, double price, string type) 
-	        : rentalID(id), make(mk), model(mdl), rentalPrice(price), carType(type) {}
+class Car {
+public:
+    int rentalID;
+    string make;
+    string model;
+    double rentalPrice;
+    string carType;
+
+    Car() : rentalID(0), make(""), model(""), rentalPrice(0.0), carType("") {}
+
+    Car(int id, string mk, string mdl, double price, string type) 
+        : rentalID(id), make(mk), model(mdl), rentalPrice(price), carType(type) {}
 };
 
 // Comparator function for sorting cars by rentalID
-bool compareCars(const Car& a, const Car& b) 
-{
+bool compareCars(const Car& a, const Car& b) {
     return a.rentalID < b.rentalID;
 }
 
 // Function to perform Jump Search on a sorted array of cars by rentalID
-int jumpSearch(Car cars[], int n, int rentalID) 
-{
+int jumpSearch(Car cars[], int n, int rentalID) {
     int step = sqrt(n);
     int prev = 0;
 
     // Finding the block where the element is present (if it is present)
-    while (prev < n && cars[min(step, n) - 1].rentalID < rentalID) 
-	{
+    while (prev < n && cars[min(step, n) - 1].rentalID < rentalID) {
         prev = step;
         step += sqrt(n);
-        if (prev >= n) 
-		{
+        if (prev >= n) {
             return -1;
         }
     }
 
     // Performing a linear search within the block
-    for (int i = prev; i < min(step, n); i++) 
-	{
-        if (cars[i].rentalID == rentalID) 
-		{
+    for (int i = prev; i < min(step, n); i++) {
+        if (cars[i].rentalID == rentalID) {
             return i;
         }
     }
@@ -55,8 +48,7 @@ int jumpSearch(Car cars[], int n, int rentalID)
 }
 
 // Function to display a car's details
-void displayCar(const Car& car) 
-{
+void displayCar(const Car& car) {
     cout << "\nRental ID: " << car.rentalID << endl;
     cout << "Brand: " << car.make << endl;
     cout << "Model: " << car.model << endl;
@@ -65,14 +57,12 @@ void displayCar(const Car& car)
 }
 
 // Function to display the list of cars
-void displayCars(Car cars[], int n) 
-{
+void displayCars(Car cars[], int n) {
     cout << "\n****************************************\n";
     cout << "\tWelcome to MMU UWU CAR\n";
     cout << "****************************************\n";
     cout << "Available Cars:\n";
-    for (int i = 0; i < n; ++i) 
-	{
+    for (int i = 0; i < n; ++i) {
         cout << "\nRental ID: " << cars[i].rentalID 
              << "\nBrand: " << cars[i].make 
              << "\nModel: " << cars[i].model 
@@ -82,8 +72,7 @@ void displayCars(Car cars[], int n)
 }
 
 // Function to input cars into the system
-void inputCars(Car cars[], int& n) 
-{
+void inputCars(Car cars[], int& n) {
     int count;
     cout << "\n****************************************\n";
     cout << "\tWelcome to MMU UWU CAR\n";
@@ -91,8 +80,7 @@ void inputCars(Car cars[], int& n)
     cout << "Enter the number of cars to add: ";
     cin >> count;
 
-    for (int i = 0; i < count; i++) 
-	{
+    for (int i = 0; i < count; i++) {
         int id;
         string make, model, type;
         double price;
@@ -115,15 +103,13 @@ void inputCars(Car cars[], int& n)
 }
 
 // Function sort the array using Cycle sort based on rentalPrice
-void cycleSort(Car arr[], int n) 
-{
+void cycleSort(Car arr[], int n) {
     // count number of memory writes
     int writes = 0;
 
     // traverse array elements and put it to on
     // the right place
-    for (int cycle_start = 0; cycle_start <= n - 2; cycle_start++) 
-	{
+    for (int cycle_start = 0; cycle_start <= n - 2; cycle_start++) {
         // initialize item as starting point
         Car item = arr[cycle_start];
 
@@ -131,35 +117,25 @@ void cycleSort(Car arr[], int n)
         // count all smaller elements on right side of item.
         int pos = cycle_start;
         for (int i = cycle_start + 1; i < n; i++)
-        {
-        	if (arr[i].rentalPrice < item.rentalPrice)
-        	{
-        		pos++;
-			}
-                
-		}
-		
+            if (arr[i].rentalPrice < item.rentalPrice)
+                pos++;
+
         // If item is already in correct position
         if (pos == cycle_start)
-        {
-            continue;   
-        }
-            
+            continue;
 
         // ignore all duplicate elements
         while (item.rentalPrice == arr[pos].rentalPrice)
             pos += 1;
 
         // put the item to it's right position
-        if (pos != cycle_start) 
-		{
+        if (pos != cycle_start) {
             swap(item, arr[pos]);
             writes++;
         }
 
         // Rotate rest of the cycle
-        while (pos != cycle_start) 
-		{
+        while (pos != cycle_start) {
             pos = cycle_start;
 
             // Find position where we put the element
@@ -172,8 +148,7 @@ void cycleSort(Car arr[], int n)
                 pos += 1;
 
             // put the item to it's right position
-            if (item.rentalPrice != arr[pos].rentalPrice) 
-			{
+            if (item.rentalPrice != arr[pos].rentalPrice) {
                 swap(item, arr[pos]);
                 writes++;
             }
@@ -197,8 +172,7 @@ void cycleSortByName(Car arr[], int n)
 
     // traverse array elements and put it to on
     // the right place
-    for (int cycle_start = 0; cycle_start <= n - 2; cycle_start++) 
-	{
+    for (int cycle_start = 0; cycle_start <= n - 2; cycle_start++) {
         // initialize item as starting point
         Car item = arr[cycle_start];
 
@@ -218,15 +192,13 @@ void cycleSortByName(Car arr[], int n)
             pos += 1;
 
         // put the item to it's right position
-        if (pos != cycle_start) 
-		{
+        if (pos != cycle_start) {
             swap(item, arr[pos]);
             writes++;
         }
 
         // Rotate rest of the cycle
-        while (pos != cycle_start) 
-		{
+        while (pos != cycle_start) {
             pos = cycle_start;
 
             // Find position where we put the element
@@ -239,8 +211,7 @@ void cycleSortByName(Car arr[], int n)
                 pos += 1;
 
             // put the item to it's right position
-            if (item.make != arr[pos].make) 
-			{
+            if (item.make != arr[pos].make) {
                 swap(item, arr[pos]);
                 writes++;
             }
@@ -249,17 +220,49 @@ void cycleSortByName(Car arr[], int n)
 }
 
 // Function to sort cars by name using Cycle Sort
-void sortCarsByName(Car cars[], int n) 
-{
+void sortCarsByName(Car cars[], int n) {
     cycleSortByName(cars, n);
     cout << "\nCars sorted by name:\n";
     displayCars(cars, n);
 }
 
+void menu(); // Forward declaration of menu function
+
+void homePage()
+{
+    int choice;
+    bool exit = false;
+    while (!exit) {
+        cout << "\n****************************************\n";
+        cout << "\tWelcome to MMU UWU CAR\n";
+        cout << "****************************************\n";
+        cout << "1. Cycle Sort + Jump Search\n";
+        cout << "2. Counting Sort + Meta Binary Search\n";
+        cout << "3. Exit\n"; // Missing semicolon added
+        cout << "\nEnter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+        case 1:
+            menu();
+            break;
+        case 2:
+            cout << "\nCounting Sort + Meta Binary Search is not implemented yet.\n";
+            break;
+        case 3:
+            exit = true;
+            cout << "\nThank you for using our system. Have a nice day!" << endl;
+            break; // Continue replaced with break
+        default:
+            cout << "\nInvalid choice. Please try again." << endl;
+        }
+    }
+}
+
 // Main menu to demonstrate the car rental system
 void menu() 
 {
-	int c;
+    int c;
     const int MAX_CARS = 100;
     Car cars[MAX_CARS] = {
         Car(101, "Toyota", "Camry", 450.00, "Sedan"),
@@ -281,7 +284,7 @@ void menu()
         cout << "2. Add new cars\n";
         cout << "3. Search for a car by rental ID\n";
         cout << "4. Sort cars by price and name\n";
-        cout << "5. Exit\n";
+        cout << "5. Back to home\n";
         cout << "\nEnter your choice: ";
         cin >> choice;
 
@@ -311,39 +314,31 @@ void menu()
                 break;
             }
             case 4:
-            	do
-            	{
-            		cout<<"\n****************************************\n";
-	                cout<<"\tWelcome to MMU UWU CAR\n";
-	                cout<<"****************************************\n";
-	                cout<<"1. Sort Cars by rental price"<<endl;
-	                cout<<"2. Sort Cars by name"<<endl;
-	                cout<<"3. Back"<<endl;
-	                cout<<"\nEnter your choice: ";
-	                cin>>c;
-	                
-	                if(c == 1)
-	                {
-	                	sortCarsByPrice(cars, n);
-					}
-					else if(c == 2)
-					{
-						sortCarsByName(cars, n);
-					}
-					else if(c == 3)
-					{
-						menu();
-					}
-	               	else
-					{
-						cout<<"\nInvalid choice. Please enter again.\n";
-					}
-				}while (c <=1 || c >= 3);
+                do {
+                    cout << "\n****************************************\n";
+                    cout << "\tWelcome to MMU UWU CAR\n";
+                    cout << "****************************************\n";
+                    cout << "1. Sort Cars by rental price" << endl;
+                    cout << "2. Sort Cars by name" << endl;
+                    cout << "3. Back" << endl;
+                    cout << "\nEnter your choice: ";
+                    cin >> c;
+
+                    if (c == 1) {
+                        sortCarsByPrice(cars, n);
+                    } else if (c == 2) {
+                        sortCarsByName(cars, n);
+                    } else if (c == 3) {
+                        break; // Correct way to go back to menu
+                    } else {
+                        cout << "\nInvalid choice. Please enter again.\n";
+                    }
+                } while (c != 3);
                 break;
             case 5:
                 exit = true;
-                cout << "\nThank you for using our system. Have a nice day!" << endl;
-                continue;
+                cout << "\nReturning to home page.\n" << endl;
+                break;
             default:
                 cout << "\nInvalid choice. Please try again." << endl;
         }
@@ -352,7 +347,6 @@ void menu()
 
 //Main menu for Car Rental System
 int main() {
-    menu();
+    homePage();
     return 0;
 }
-
