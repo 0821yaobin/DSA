@@ -141,7 +141,10 @@ void cycleSort(Car arr[], int n)
 		
         // If item is already in correct position
         if (pos == cycle_start)
-            continue;
+        {
+            continue;   
+        }
+            
 
         // ignore all duplicate elements
         while (item.rentalPrice == arr[pos].rentalPrice)
