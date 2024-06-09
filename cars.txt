@@ -1,0 +1,20 @@
+255 Toyota asdf 300 SUV
+103 Honda wedrfg 400 SUV
+202 Perodua Myvi 300 Sedan
+105 Honda Aircode 600 SUV
+106 Proton Perodua 250 Sedan
+123 Ford Escape 350 SUV
+115 Nissan Rogue 320 SUV
+406 Chevrolet Malibu 280 Sedan
+407 Hyundai Elantra 290 Sedan
+308 Kia Sorento 360 SUV
+189 Subaru Outback 340 SUV
+310 Mazda CX-5 330 SUV
+174 BMW 3 Series 450 Sedan
+102 Audi Q5 500 SUV
+113 Mercedes-Benz C-Class 480 Sedan
+134 Volkswagen Tiguan 370 SUV
+0   0 
+-649810912   6.95237e-310 
+0   0 
+-649810912   6.95237e-310 
