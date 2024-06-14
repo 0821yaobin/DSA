@@ -10,11 +10,5 @@
 308 Kia Sorento 360 SUV
 189 Subaru Outback 340 SUV
 310 Mazda CX-5 330 SUV
-174 BMW 3 Series 450 Sedan
-102 Audi Q5 500 SUV
-113 Mercedes-Benz C-Class 480 Sedan
-134 Volkswagen Tiguan 370 SUV
-0   0 
--649810912   6.95237e-310 
-0   0 
--649810912   6.95237e-310 
+211 BMW M4 600 Sedan
+135 Toyota Vios 450 Sedan

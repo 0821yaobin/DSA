@@ -83,8 +83,8 @@ void displayCars(const vector<Car>& cars) {
 }
 
 bool validateRentalID(const vector<Car>& cars, int id) {
-    for (const auto& car : cars) {
-        if (car.rentalID == id) {
+    for (size_t i = 0; i < cars.size(); ++i) {
+        if (cars[i].rentalID == id) {
             return false;
         }
     }
@@ -113,7 +113,7 @@ void inputCars(const string& filename) {
             cout << "\nRental ID: ";
             cin >> id;
 
-            if(cin.fail()) {
+            if (cin.fail()) {
                 cin.clear(); // clear the error flag
                 cin.ignore(numeric_limits<streamsize>::max(), '\n'); // discard invalid input
                 cout << "Invalid input. Please enter a valid integer for Rental ID.\n";
@@ -135,7 +135,7 @@ void inputCars(const string& filename) {
         cin >> price;
         cout << "Type (e.g., SUV, Sedan): ";
         cin >> type;
-        
+
         Car newCar(id, make, model, price, type);
         cars.push_back(newCar);
         writeCarToFile(filename, newCar);
