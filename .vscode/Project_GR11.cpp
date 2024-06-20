@@ -160,6 +160,7 @@ void Register()
     cout << "****************************************\n";
 	cout << "\nEnter username: ";
     cin >> newUser.username;
+    fflush(stdin);
     cout << "\nEnter password: ";
     cin >> newUser.password;
 
@@ -184,6 +185,7 @@ void Login()
     cout << "****************************************\n";
 	cout << "\nEnter username: ";
     cin >> username;
+    fflush(stdin);
     cout << "\nEnter password: ";
     cin >> password;
 
@@ -300,6 +302,9 @@ void AdminLogin()
 		{
             cout << "\nAdmin login successful!" << endl;
             loggedIn = true;
+            system("cls");
+            loading();
+            system("cls");
             homepage();
             break;
         }
